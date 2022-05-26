@@ -59,4 +59,6 @@ class DataInject(tk.Frame):
 app = App()
 app.title("Jank Database")
 app.geometry("1280x720")
+theme = ttk.Style(app)
+theme.theme_use('alt')
 app.mainloop()
