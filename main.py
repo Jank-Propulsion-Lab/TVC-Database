@@ -1,7 +1,8 @@
-from sqlite3 import Row
 import tkinter as tk
 from tkinter import ttk
 from tkinter.ttk import *
+from tkinter import filedialog
+import csv
 
 from numpy import pad
 
@@ -45,6 +46,23 @@ class GraphPage(tk.Frame):
         home.pack()
         data = ttk.Button(self, text="Inject Data", command=lambda: controller.show_frame(DataInject))
         data.pack()
+        
+        def open_csv_file():
+            t = tk.Toplevel
+            t.title("Open CSV File")
+            
+            def open_file_command():
+                global file 
+                file = filedialog.filedialog.askopenfile(initialdir="/", title = "Select File", filetypes = ("txt files", "*.txt"))
+
+            open_file = ttk.Button(t, text="Open File", command=open_file_command())
+            open_file.pack()
+
+        
+        open_label  = ttk.Label(self, text="Open CSV File")
+        open_label.pack()
+        open_button = ttk.Button(self, text="Open CSV File", command = open_csv_file)
+        open_button.pack()
 
 class DataInject(tk.Frame):
     def __init__(self, parent, controller):
