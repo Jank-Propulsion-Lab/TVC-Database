@@ -4,8 +4,9 @@ from tkinter.ttk import *
 from tkinter import filedialog
 import csv
 
-from numpy import pad
+# from numpy import pad
 
+global file
 LARGE_FONT = ("Verdand", 12)
 
 class App(tk.Tk):
@@ -48,17 +49,8 @@ class GraphPage(tk.Frame):
         data.pack()
         
         def open_csv_file():
-            t = tk.Toplevel
-            t.title("Open CSV File")
-            
-            def open_file_command():
-                global file 
-                file = filedialog.filedialog.askopenfile(initialdir="/", title = "Select File", filetypes = ("txt files", "*.txt"))
+            file = filedialog.askopenfilename(initialdir="/", title = "Select File", filetypes = (("CSV files", "*.csv"),))
 
-            open_file = ttk.Button(t, text="Open File", command=open_file_command())
-            open_file.pack()
-
-        
         open_label  = ttk.Label(self, text="Open CSV File")
         open_label.pack()
         open_button = ttk.Button(self, text="Open CSV File", command = open_csv_file)
